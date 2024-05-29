@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://uv5ilh2o83q"]
+[gd_scene load_steps=5 format=3 uid="uid://uv5ilh2o83q"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_42tfi"]
 [ext_resource type="PackedScene" uid="uid://mjk1bj61ubad" path="res://player.tscn" id="1_dijxj"]
+[ext_resource type="PackedScene" uid="uid://6m1sja0g8x1u" path="res://mob.tscn" id="2_kwkpl"]
 
 [sub_resource type="Curve2D" id="Curve2D_sofy8"]
 _data = {
@@ -9,6 +11,8 @@ _data = {
 point_count = 5
 
 [node name="Main" type="Node"]
+script = ExtResource("1_42tfi")
+mob_scene = ExtResource("2_kwkpl")
 
 [node name="Player" parent="." instance=ExtResource("1_dijxj")]
 
@@ -28,3 +32,5 @@ position = Vector2(240, 450)
 curve = SubResource("Curve2D_sofy8")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
